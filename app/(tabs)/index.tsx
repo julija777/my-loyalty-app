@@ -1,31 +1,33 @@
-import { StyleSheet } from 'react-native';
+import { OnboardingHeader } from "@/components/OnboardingHeader";
+import React from "react";
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
 
-export default function TabOneScreen() {
+type OnboardingScreenProps = {
+  children: React.ReactNode;
+  currentStep: number;
+  withLemon?: boolean;
+  stickyFooter?: boolean;
+  buttonTitle: string;
+  onButtonPress: () => void;
+  isLoading?: boolean;
+  isDisabled?: boolean;
+};
+const Onboarding = ({
+  children,
+  currentStep,
+  withLemon = true,
+  stickyFooter = false,
+  buttonTitle,
+  onButtonPress,
+  isLoading = false,
+  isDisabled = false,
+}: OnboardingScreenProps) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
+    <>
+      <OnboardingHeader currentStep={currentStep} />
+      {children}
+    </>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+export default Onboarding;
