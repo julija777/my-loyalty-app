@@ -1,32 +1,14 @@
-import { StyleSheet } from "react-native";
-import { Text, View } from "@/components/Themed";
+import { Text, YStack } from "tamagui";
 
 export default function Rewards() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Rewards from rewards.tsx</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-    </View>
+    <YStack
+      flex={1}
+      justifyContent="center"
+      alignItems="center"
+      backgroundColor="#df6f68"
+    >
+      <Text>Rewards</Text>
+    </YStack>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});

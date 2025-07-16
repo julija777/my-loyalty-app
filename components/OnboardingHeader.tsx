@@ -72,11 +72,7 @@ export const OnboardingHeader = ({
             height="100%"
           />
         </Progress>
-        <MaterialCommunityIcons
-          name="gift-outline"
-          size={24}
-          color="#dbf1eb"
-        />
+        <MaterialCommunityIcons name="gift-outline" size={24} color="#dbf1eb" />
       </XStack>
     </YStack>
   );

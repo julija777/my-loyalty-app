@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { OnboardingHeader } from "@/components/OnboardingHeader";
-import FirstOnboardingScreen from "../../screens/OnboardingScreens/FirstOnboardingScreen";
-import SecondOnboardingScreen from "../../screens/OnboardingScreens/SecondOnboardingScreen";
-import ThirdOnboardingScreen from "../../screens/OnboardingScreens/ThirdOnboardingScreen";
-import { View, Button } from "react-native";
+import FirstOnboardingScreen from "@/screens/OnboardingScreens/FirstOnboardingScreen";
+import SecondOnboardingScreen from "@/screens/OnboardingScreens/SecondOnboardingScreen";
+import ThirdOnboardingScreen from "@/screens/OnboardingScreens/ThirdOnboardingScreen";
+import { View, Button, XStack } from "tamagui";
 
 export default function OnboardingScreen() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -23,12 +23,30 @@ export default function OnboardingScreen() {
 
   return (
     <View style={{ flex: 1 }}>
-      <OnboardingHeader currentStep={currentStep} setCurrentStep={setCurrentStep} />
+      <OnboardingHeader
+        currentStep={currentStep}
+        setCurrentStep={setCurrentStep}
+      />
+
       <View style={{ flex: 1 }}>{renderStep()}</View>
-        <Button
-          title={currentStep === 3 ? "Finish" : "Next"}
-          onPress={() => setCurrentStep((step) => Math.min(3, step + 1))}
-        />
+      <Button
+        onPress={() => setCurrentStep((step) => Math.min(3, step + 1))}
+        backgroundColor="#ad1b19"
+        color="#688ead"
+        borderRadius={12}
+        paddingHorizontal={24}
+        paddingVertical={16}
+        marginHorizontal={20}
+        marginBottom={20}
+        fontSize={16}
+        fontWeight={100}
+        pressStyle={{
+          backgroundColor: "#0056CC",
+          scale: 0.98,
+        }}
+      >
+        {currentStep === 3 ? "Finish" : "Next"}
+      </Button>
     </View>
   );
 }

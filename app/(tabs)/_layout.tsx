@@ -41,6 +41,7 @@ export default function TabLayout() {
         options={{
           title: "Rewards",
           tabBarIcon: ({ color }) => <TabBarIcon name="gift" color={color} />,
+          headerShown: false,
         }}
       />
       <Tabs.Screen
