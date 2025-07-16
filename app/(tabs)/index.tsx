@@ -1,33 +1,34 @@
+import React, { useState } from "react";
 import { OnboardingHeader } from "@/components/OnboardingHeader";
-import React from "react";
+import FirstOnboardingScreen from "../../screens/OnboardingScreens/FirstOnboardingScreen";
+import SecondOnboardingScreen from "../../screens/OnboardingScreens/SecondOnboardingScreen";
+import ThirdOnboardingScreen from "../../screens/OnboardingScreens/ThirdOnboardingScreen";
+import { View, Button } from "react-native";
 
+export default function OnboardingScreen() {
+  const [currentStep, setCurrentStep] = useState(1);
 
-type OnboardingScreenProps = {
-  children: React.ReactNode;
-  currentStep: number;
-  withLemon?: boolean;
-  stickyFooter?: boolean;
-  buttonTitle: string;
-  onButtonPress: () => void;
-  isLoading?: boolean;
-  isDisabled?: boolean;
-};
-const Onboarding = ({
-  children,
-  currentStep,
-  withLemon = true,
-  stickyFooter = false,
-  buttonTitle,
-  onButtonPress,
-  isLoading = false,
-  isDisabled = false,
-}: OnboardingScreenProps) => {
+  const renderStep = () => {
+    switch (currentStep) {
+      case 1:
+        return <FirstOnboardingScreen />;
+      case 2:
+        return <SecondOnboardingScreen />;
+      case 3:
+        return <ThirdOnboardingScreen />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <>
-      <OnboardingHeader currentStep={currentStep} />
-      {children}
-    </>
+    <View style={{ flex: 1 }}>
+      <OnboardingHeader currentStep={currentStep} setCurrentStep={setCurrentStep} />
+      <View style={{ flex: 1 }}>{renderStep()}</View>
+        <Button
+          title={currentStep === 3 ? "Finish" : "Next"}
+          onPress={() => setCurrentStep((step) => Math.min(3, step + 1))}
+        />
+    </View>
   );
-};
-
-export default Onboarding;
+}
